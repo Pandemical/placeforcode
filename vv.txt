@@ -1,0 +1,67 @@
+using System;
+
+namespace черновик
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Введите размер квадратной матрицы: ");
+            int razmer = Convert.ToInt32(Console.ReadLine());
+            int[,] arr = new int [ razmer, razmer ];
+            Random random = new Random();
+            int count = 0;
+            for ( int i = 0; i < arr.GetLength(0); i++)
+            {
+                for ( int j = 0; j < arr.GetLength(1); j++)
+                {
+                    arr[i, j] = random.Next(1, 9);
+                    Console.Write($"{arr[i, j]} ");
+                    count++;
+                    if (count == arr.GetLength(0))
+                    {
+                        Console.WriteLine();
+                        count = 0;
+                    }
+                }
+            }
+            int one, three;
+            Console.WriteLine("Введите 1, если хотите,чтобы все числа над главной диагональю превратились в 0");
+            Console.WriteLine("Введите 2, если хотите,чтобы все числа под главной диагональю превратились в 0");
+            one = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Введите 3, если хотите,чтобы все числа над побочной диагональю превратились в 0");
+            Console.WriteLine("Введите 4, если хотите,чтобы все числа под побочнной диагональю превратились в 0");
+            three = Convert.ToInt32(Console.ReadLine());  
+            for (int i = 0; i < arr.GetLength(0); i++)
+            {
+                for (int j = 0; j < arr.GetLength(1); j++)
+                {
+                    if (( i <= j ) && (one == 1))
+                    {
+                        arr[i, j] = 0;
+                    }
+                    else if ((i >= j) && (one != 1))
+                    {
+                        arr[i, j] = 0;
+                    }                    
+                    
+                    if (((i + j == arr.GetLength(0)-1) && (three == 3)) || ((i + j< arr.GetLength(0) - 1) && (three == 1)))
+                    {
+                        arr[i, j] = 0;
+                    }
+                    else if (((i + j == arr.GetLength(0) - 1) && (three == 3)) || ((i + j > arr.GetLength(0) - 1) && (three == 3)))
+                    {
+                        arr[i, j] = 0;
+                    }
+                    Console.Write($"{arr[i, j]} ");
+                    count++;
+                    if (count == arr.GetLength(0))
+                    {
+                        Console.WriteLine();
+                        count = 0;
+                    }
+                }
+            }
+        }
+    }
+}
