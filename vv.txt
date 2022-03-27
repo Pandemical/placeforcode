@@ -62,6 +62,7 @@ namespace черновик
                     }
                 }
             }
+            Console.WriteLine("github");
         }
     }
 }
